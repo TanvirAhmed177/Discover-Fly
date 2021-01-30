@@ -137,7 +137,7 @@
               <p>Charge 10% VAT</p>
             </div>
             <div class="right">
-              <p id="tax-amount">$0</p>
+              <p id="vat-amount">$0</p>
             </div>
           </div>
           <hr />
@@ -222,7 +222,7 @@
                       <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                      <p id="confirmed-tax-amount">$0</p>
+                      <p id="confirmed-vat-amount">$0</p>
                     </div>
                   </div>
                   <hr />
@@ -296,15 +296,15 @@
         const totalCost = firstClassTotal * 150 + economyClassTotal * 100;
         document.getElementById("sub-total").innerText = "$" + totalCost;
 
-        const tax = Math.round(totalCost * 0.1);
-        document.getElementById("tax-amount").innerText = "$" + tax;
+        const vat = Math.round(totalCost * 0.1);
+        document.getElementById("vat-amount").innerText = "$" + vat;
 
-        const grandTotal = totalCost + tax;
+        const grandTotal = totalCost + vat;
         document.getElementById("grand-total").innerText = "$" + grandTotal;
 
         document.getElementById("confirmed-sub-total").innerText =
           "$" + totalCost;
-        document.getElementById("confirmed-tax-amount").innerText = "$" + tax;
+        document.getElementById("confirmed-vat-amount").innerText = "$" + vat;
         document.getElementById("confirmed-grand-total").innerText =
           "$" + grandTotal;
         document.getElementById(
