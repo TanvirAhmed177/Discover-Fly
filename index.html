@@ -74,13 +74,13 @@
           <div class="input-control">
             <button
               onclick="handleTicketCount('firstClass',false)"
-              class="btn btn-default input-button-style"
+              class="btn btn-outline-danger input-button-style"
             >
               <i class="fas fa-minus"></i>
             </button>
             <input
               id="firstClassCount"
-              style="margin: 0px 10px; text-align: center"
+              style="margin: 0px 10px; text-align: center; font-weight: bolder"
               class="inp-style inp-width"
               type="text"
               name=""
@@ -88,7 +88,7 @@
             />
             <button
               onclick="handleTicketCount('firstClass',true)"
-              class="btn btn-default input-button-style"
+              class="btn btn-outline-primary input-button-style"
             >
               <i class="fas fa-plus"></i>
             </button>
@@ -102,13 +102,13 @@
           <div class="input-control">
             <button
               onclick="handleTicketCount('economyClass',false)"
-              class="btn btn-default input-button-style"
+              class="btn btn-outline-danger input-button-style"
             >
               <i class="fas fa-minus"></i>
             </button>
             <input
               id="economyClassCount"
-              style="margin: 0px 10px; text-align: center"
+              style="margin: 0px 10px; text-align: center; font-weight: bolder"
               class="inp-style inp-width"
               type="text"
               name=""
@@ -116,7 +116,7 @@
             />
             <button
               onclick=" handleTicketCount( 'economyClass',true)"
-              class="btn btn-default input-button-style"
+              class="btn btn-outline-primary input-button-style"
             >
               <i class="fas fa-plus"></i>
             </button>
@@ -156,6 +156,7 @@
           class="btn btn-style btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdrop"
+          onclick="calculateTotalCost()"
         >
           Book Now
         </button>
@@ -173,7 +174,9 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Thank You!</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Booking Confirmation
+                </h5>
                 <button
                   type="button"
                   class="btn-close"
@@ -182,8 +185,54 @@
                 ></button>
               </div>
               <div class="modal-body">
-                Your booking is complete. You will soon receive an email
-                confirmation.
+                Thank you! Your booking is complete. You will soon receive an
+                email confirmation.
+                <div class="calculations">
+                  <div class="amount">
+                    <div class="left">
+                      <p>First Class</p>
+                    </div>
+                    <div class="right">
+                      <p id="confirmed-firstClass-total">0</p>
+                    </div>
+                  </div>
+
+                  <div class="amount">
+                    <div class="left">
+                      <p>Economy Class</p>
+                    </div>
+                    <div class="right">
+                      <p id="confirmed-economyClass-total">0</p>
+                    </div>
+                  </div>
+
+                  <div class="amount">
+                    <div class="left">
+                      <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                      <p id="confirmed-sub-total">$0</p>
+                    </div>
+                  </div>
+
+                  <div class="amount">
+                    <div class="left">
+                      <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                      <p id="confirmed-tax-amount">$0</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="amount">
+                    <div class="left">
+                      <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                      <p id="confirmed-grand-total">$0</p>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
                 <button
@@ -193,7 +242,11 @@
                 >
                   Close
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
                   Understood
                 </button>
               </div>
@@ -246,6 +299,18 @@
 
         const grandTotal = totalCost + tax;
         document.getElementById("grand-total").innerText = "$" + grandTotal;
+
+        document.getElementById("confirmed-sub-total").innerText =
+          "$" + totalCost;
+        document.getElementById("confirmed-tax-amount").innerText = "$" + tax;
+        document.getElementById("confirmed-grand-total").innerText =
+          "$" + grandTotal;
+        document.getElementById(
+          "confirmed-firstClass-total"
+        ).innerText = firstClassTotal;
+        document.getElementById(
+          "confirmed-economyClass-total"
+        ).innerText = economyClassTotal;
       }
 
       function getInputValue(typeOfFlight) {
