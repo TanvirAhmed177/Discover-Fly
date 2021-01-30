@@ -93,7 +93,7 @@ a.active {
 .input-control {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 
 .booking-form .calculations {
